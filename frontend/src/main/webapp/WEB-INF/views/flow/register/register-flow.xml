@@ -4,21 +4,37 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
+
 <var name="billing" class="com.niit.backend.model.Address" />
 <var name ="user" class="com.niit.backend.model.User" />
+
+<on-start>
+<evaluate expression="registerHandler.init()" result="flowScope.registerModel"></evaluate>
+</on-start>
+
 	<!-- Start State -->
 	<view-state id="personal" model="user"
 		view="flow/register/register-personal">
 		<transition on="billing" to="billing"></transition>
+		
+		<on-exit>
+		 <evaluate expression="registerHandler.addUser(flowScope.registerModel ,user)"></evaluate>
+		</on-exit>
+	
 	</view-state>
 
 	<view-state id="billing"  model="billing"
 		view="flow/register/register-address">
 
 		<transition on="confirm" to="confirm"></transition>
+		
+		<on-exit>
+		 <evaluate expression="registerHandler.addBilling(flowScope.registerModel ,billing)"></evaluate>
+		</on-exit>
 	</view-state>
 	
-	<view-state id="confirm" view="flow/register/register-confirm">
+	<view-state id="confirm" model="flowScope.registerModel"
+	view="flow/register/register-confirm">
 	<transition on="personal" to="personal"></transition>
 	<transition on="billing" to="billing"></transition>
 	<transition on="success" to="success" ></transition>

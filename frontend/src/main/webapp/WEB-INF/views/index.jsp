@@ -73,6 +73,10 @@
 				<%@ include file="product.jsp"%>
 			</c:if>
 			
+			<c:if test="${userclickregister == true}">
+					<%@ include file="register.jsp"%>
+				</c:if>
+			
 			</div>
 		</div>
 
