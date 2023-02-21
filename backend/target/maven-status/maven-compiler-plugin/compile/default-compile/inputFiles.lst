@@ -1,5 +1,12 @@
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\model\Address.java
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\model\Product.java
 D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\App.java
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\model\User.java
 D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\DAOIMPL\CategoryDAOIMPL.java
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\DAO\ProductDAO.java
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\DAO\UserDAO.java
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\DAOIMPL\ProductDAOIMPL.java
 D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\config\HbernateConfig.java
+D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\DAOIMPL\UserDAOIMPL.java
 D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\DAO\CategoryDAO.java
 D:\Jadavpur-E-commerce-2\backend\src\main\java\com\niit\backend\model\Category.java

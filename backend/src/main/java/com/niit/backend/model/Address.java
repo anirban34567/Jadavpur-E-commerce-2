@@ -101,4 +101,15 @@ public class Address implements Serializable
 	public void setBilling(boolean billing) {
 		this.billing = billing;
 	}
+	
+	@Column(name = "user_id")
+	private int userId;
+
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 }
