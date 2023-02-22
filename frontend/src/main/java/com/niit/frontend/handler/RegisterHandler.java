@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.niit.backend.DAO.UserDAO;
 import com.niit.backend.model.Address;
+import com.niit.backend.model.Cart;
 import com.niit.backend.model.User;
 import com.niit.frontend.model.RegisterModel;
 
@@ -32,6 +33,14 @@ public class RegisterHandler
 	public String saveAll(RegisterModel registerModel) 
 	{
 		User user = registerModel.getUser();
+		
+		if (user.getRole().equals("USER")) 
+		{
+			Cart cart = new Cart();
+			cart.setUser(user);
+			user.setCart(cart);
+		}
+		
 		userDAO.insert(user);
 		
 		
