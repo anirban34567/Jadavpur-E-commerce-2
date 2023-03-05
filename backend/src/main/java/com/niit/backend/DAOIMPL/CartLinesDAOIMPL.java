@@ -11,7 +11,7 @@ import com.niit.backend.DAO.CartLinesDAO;
 import com.niit.backend.model.Cart;
 import com.niit.backend.model.CartLines;
 
-@Repository("cartLinesDAO")
+@Repository("cartlinesDAO")
 @Transactional
 
 public class CartLinesDAOIMPL implements CartLinesDAO
@@ -82,7 +82,7 @@ public class CartLinesDAOIMPL implements CartLinesDAO
 
 	@Override
 	public List<CartLines> listAvailable(int cartId) {
-		String query = "FROM CartLine WHERE cartId = :cartId AND available = :available";
+		String query = "FROM CartLines WHERE cartId = :cartId AND available = :available";
 		return sessionFactory.getCurrentSession()
 								.createQuery(query, CartLines.class)
 									.setParameter("cartId", cartId)
