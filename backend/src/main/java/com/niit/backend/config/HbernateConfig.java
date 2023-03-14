@@ -25,7 +25,7 @@ public class HbernateConfig
 	private String DATABASE_USERNAME = "anirban";
 	private String DATABASE_PASSWORD = "anirban";
 
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 
