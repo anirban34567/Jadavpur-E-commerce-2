@@ -25,20 +25,24 @@ public class GlobalController
 
 	@ModelAttribute("userModel")
 	public UserModel getUserModel() {
-		if (session.getAttribute("userModel") == null) {
+		if (session.getAttribute("userModel") == null) 
+		{
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 			User user = userDAO.getUser(authentication.getName());
 
-			if (user != null) {
+			if (user != null) 
+			{
+				System.out.println(user.toString());
 				userModel = new UserModel();
 				userModel.setRole(user.getRole());
 				userModel.setFullName(user.getFirstName() + " " + user.getFirstName());
 				userModel.setId(user.getId());
 
-				if (userModel.getRole().equals("USER")) {
+				if (userModel.getRole().equals("USER")) 
+				{
 					userModel.setCart(user.getCart());
-				}
+			    }
 
 				session.setAttribute("userModel", userModel);
 				return userModel;
