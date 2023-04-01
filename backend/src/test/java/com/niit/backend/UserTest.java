@@ -40,14 +40,14 @@ public class UserTest
 		user.setRole("USER");
 		*/
 		
-		user.setContactNumber("7003836940");
-		user.setEmail("anirban.mitra.sp@gmail.com");
+		user.setContactNumber("623912345");
+		user.setEmail("David@gmail.com");
 		user.setEnabled(true);
-		user.setFirstName("Anirban");
+		user.setFirstName("David");
 		//user.setId(2);
-		user.setLastName("Mitra");
-		user.setPassword("supplier12345");
-		user.setRole("SUPPLIER");
+		user.setLastName("Mason");
+		user.setPassword("Supp123");
+		user.setRole("Supplier");
 		
 		
 		assertEquals("Error inserting user" ,  true , userDAO.insert(user));
