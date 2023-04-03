@@ -33,12 +33,12 @@ public class CartlineTest
 	@Test
 	public void testInsert()
 	{
-		product = productDAO.getProduct(33);
+		product = productDAO.getProduct(34);
 		
 		cartlines = new CartLines();
 		
 		cartlines.setProduct(product);
-		cartlines.setCartId(4);
+		cartlines.setCartId(6);
 		cartlines.setProductCount(10);
 		cartlines.setBuyingPrice(product.getUnitPrice());
 		cartlines.setTotal(cartlines.getBuyingPrice() * cartlines.getProductCount());

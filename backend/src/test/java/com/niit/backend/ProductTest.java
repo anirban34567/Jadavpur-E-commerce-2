@@ -30,12 +30,12 @@ public class ProductTest
 	{
 		product = new Product();
 		//product.setId(18);
-		product.setName("Noise Icon Buzz BT Calling ");
-		product.setBrand("Noise");
-		product.setDescription("1.69\" display , AI Voice Assistance, Built-In Games Smartwatch  (Black Strap, Regular)");
-		product.setUnitPrice(1700.00);
+		product.setName("Sansui 102 cm (40 inch) Full HD ");
+		product.setBrand("Sansui");
+		product.setDescription("Sansui 102 cm (40 inch) Full HD LED Smart Android TV with Voice Search Smart Remote (Midnight Black) (2021 Model)  (JSW40ASFHD)");
+		product.setUnitPrice(18990.00);
 		product.setActive(true);
-		product.setCategoryId(6);
+		product.setCategoryId(4);
 		product.setSupplierId(12);
 		product.setQuantity(10);
 		
