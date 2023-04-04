@@ -78,6 +78,7 @@ public class ManageProductController
 	{
 		if(p.getId() == 0)
 		{
+		
 			new ProductValidation().validate(p,results);
 		}
 		else
@@ -100,7 +101,10 @@ public class ManageProductController
 		else
 		{
 			if(p.getId() == 0)
+			{
+				p.setActive(true);
 				productDAO.insert(p);
+			}
 			else
 				productDAO.update(p);
 			
