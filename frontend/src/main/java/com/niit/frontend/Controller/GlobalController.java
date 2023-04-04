@@ -36,7 +36,7 @@ public class GlobalController
 				System.out.println(user.toString());
 				userModel = new UserModel();
 				userModel.setRole(user.getRole());
-				userModel.setFullName(user.getFirstName() + " " + user.getFirstName());
+				userModel.setFullName(user.getFirstName() + " " + user.getLastName());
 				userModel.setId(user.getId());
 
 				if (userModel.getRole().equals("USER")) 
