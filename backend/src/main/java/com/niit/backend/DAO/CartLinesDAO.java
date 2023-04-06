@@ -14,5 +14,6 @@ public interface CartLinesDAO
 	public boolean remove(CartLines cartLine);
 	boolean updateCart(Cart cart);
 	public List<CartLines> listAvailable(int cartId);
+	public CartLines getByCartAndProduct(int cartId, int productId);
 
 }
