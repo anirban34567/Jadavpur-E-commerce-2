@@ -17,10 +17,30 @@
 				expression="checkoutHandler.getShippingAddresses(flowScope.checkoutModel)"
 				result="viewScope.addresses" />
 		</on-entry>
+		
+		<transition on="saveAddress" to="saveAddress"
+			validate="true" />
+			
+		<transition on="addressSelection" to="saveAddressSelection"
+			validate="false" />
+	
 	</view-state>
+	
+	<action-state id="saveAddress">
+		<evaluate
+			expression="checkoutHandler.saveAddress(flowScope.checkoutModel, shipping)" />
+		<transition on="success" to="payment" />
+	</action-state>
+	
+	
+	<action-state id="saveAddressSelection">
+		<evaluate
+			expression="checkoutHandler.saveAddressSelection(flowScope.checkoutModel, requestParameters.shippingId)" />
+		<transition on="success" to="payment" />
+	</action-state>
 
 	<view-state id="payment"
-		view="flow/cart/checkout/checkout-address">
+		view="flow/cart/checkout/checkout-payment">
 
 	</view-state>
 

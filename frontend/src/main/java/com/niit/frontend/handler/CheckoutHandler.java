@@ -67,5 +67,28 @@ public class CheckoutHandler
 		
 		return checkoutModel;
 	}
+	
+	public String saveAddress(CheckoutModel checkoutModel, Address shipping) 
+	{
+
+		String transitionValue = "success";
+
+		shipping.setUserId(checkoutModel.getUser().getId());
+		shipping.setShipping(true);
+		userDAO.insertAddress(shipping);
+
+		checkoutModel.setShipping(shipping);
+
+		return transitionValue;
+	}
+	
+	public String saveAddressSelection(CheckoutModel checkoutModel, int shippingId) {
+
+		String transitionValue = "success";
+		Address shipping = userDAO.getAddress(shippingId);
+		checkoutModel.setShipping(shipping);
+		return transitionValue;
+
+	}
 
 }
