@@ -138,4 +138,26 @@ public class UserDAOIMPL implements UserDAO
 		}
 	}
 
+
+	@Override
+	public Address getAddress(int addressid) 
+	{
+		try
+		{
+			String selectuser = "FROM Address WHERE id = :addressID";
+			
+			Query query = sessionFactory.getCurrentSession().createQuery(selectuser);
+					
+			query.setParameter("addressID", addressid);
+							
+			return (Address) query.getSingleResult();
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }
