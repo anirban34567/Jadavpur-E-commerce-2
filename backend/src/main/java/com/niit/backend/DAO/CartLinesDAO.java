@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.niit.backend.model.Cart;
 import com.niit.backend.model.CartLines;
+import com.niit.backend.model.OrderDetails;
 
 public interface CartLinesDAO 
 {
@@ -15,5 +16,7 @@ public interface CartLinesDAO
 	boolean updateCart(Cart cart);
 	public List<CartLines> listAvailable(int cartId);
 	public CartLines getByCartAndProduct(int cartId, int productId);
+	
+	boolean addOrderDetail(OrderDetails orderDetail);
 
 }
