@@ -41,12 +41,24 @@
 
 	<view-state id="payment"
 		view="flow/cart/checkout/checkout-payment">
+		<transition on="pay" to="save" />
 
 	</view-state>
+	
+	<action-state id="save">
+		<evaluate
+			expression="checkoutHandler.saveOrder(flowScope.checkoutModel)" />
+		<transition on="success" to="success" />
+	</action-state>
 
 	<view-state id="success"
-		view="flow/cart/checkout/checkout-address">
+		view="flow/cart/checkout/checkout-success">
 
+		<on-entry>
+			<evaluate
+				expression="checkoutHandler.getOrderDetails(flowScope.checkoutModel)"
+				result="viewScope.orderDetails" />
+		</on-entry>
 	</view-state>
 
 </flow>

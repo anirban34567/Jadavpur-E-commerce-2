@@ -1,17 +1,26 @@
 package com.niit.frontend.handler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.niit.backend.DAO.CartLinesDAO;
+import com.niit.backend.DAO.ProductDAO;
 import com.niit.backend.DAO.UserDAO;
 import com.niit.backend.model.Address;
+import com.niit.backend.model.Cart;
 import com.niit.backend.model.CartLines;
+import com.niit.backend.model.OrderDetails;
+import com.niit.backend.model.OrderItem;
+import com.niit.backend.model.Product;
 import com.niit.backend.model.User;
 import com.niit.frontend.model.CheckoutModel;
+import com.niit.frontend.model.UserModel;
 
 @Component("checkoutHandler")
 public class CheckoutHandler 
@@ -21,6 +30,13 @@ public class CheckoutHandler
 	
 	@Autowired
 	CartLinesDAO cartlinesDAO;
+	
+	@Autowired
+	ProductDAO productDAO;
+	
+	@Autowired
+	private HttpSession session;
+
 	
 	public List<Address> getShippingAddresses(CheckoutModel model) 
 	{
@@ -89,6 +105,72 @@ public class CheckoutHandler
 		checkoutModel.setShipping(shipping);
 		return transitionValue;
 
+	}
+	
+	public String saveOrder(CheckoutModel checkoutModel) {
+		String transitionValue = "success";
+
+		OrderDetails orderDetail = new OrderDetails();
+
+		orderDetail.setUser(checkoutModel.getUser());
+		orderDetail.setBilling(userDAO.getBillingAddress(checkoutModel.getUser().getId()));
+		orderDetail.setShipping(checkoutModel.getShipping());
+		orderDetail.setOrderDate(new Date());
+		orderDetail.setOrderCount(checkoutModel.getCart().getCartLines());
+		orderDetail.setOrderTotal(checkoutModel.getCheckoutTotal());
+
+		List<CartLines> cartLines = checkoutModel.getCartLines();
+		
+		OrderItem orderItem = null;
+		Product product = null;
+		for (CartLines cartLine : cartLines) 
+		{
+
+			orderItem = new OrderItem();
+
+			orderItem.setBuyingPrice(cartLine.getBuyingPrice());
+			orderItem.setProduct(cartLine.getProduct());
+			orderItem.setProductCount(cartLine.getProductCount());
+			orderItem.setTotal(cartLine.getTotal());
+
+			orderItem.setOrderDetail(orderDetail);
+			
+			orderDetail.getOrderItems().add(orderItem);
+
+			
+			product = cartLine.getProduct();
+			product.setQuantity(product.getQuantity() - cartLine.getProductCount());
+			productDAO.update(product);
+
+			// delete the cartLine
+			cartlinesDAO.remove(cartLine);
+		}
+		
+		
+		cartlinesDAO.addOrderDetail(orderDetail);
+
+				
+		// update the cart
+		Cart cart = checkoutModel.getCart();
+		cart.setGrandTotal(0);
+		cart.setCartLines(0);
+		cartlinesDAO.updateCart(cart);
+		
+		// update the cart if its in the session
+		UserModel userModel = (UserModel) session.getAttribute("userModel");
+		if(userModel!=null) 
+		{
+			userModel.setCart(cart);
+		}
+		
+		checkoutModel.setOrderDetails(orderDetail);
+
+		return transitionValue;
+	}
+	
+	public OrderDetails getOrderDetails(CheckoutModel checkoutModel)
+	{
+		return checkoutModel.getOrderDetails();
 	}
 
 }
