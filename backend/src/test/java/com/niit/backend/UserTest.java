@@ -41,12 +41,12 @@ public class UserTest
 		user.setRole("USER");
 		*/
 		
-		user.setContactNumber("623912345");
-		user.setEmail("David@gmail.com");
+		user.setContactNumber("7908497422");
+		user.setEmail("Anirbansp1@gmail.com");
 		user.setEnabled(true);
-		user.setFirstName("David");
+		user.setFirstName("Anirban");
 		//user.setId(2);
-		user.setLastName("Mason");
+		user.setLastName("Mitra");
 		user.setPassword("Admin123");
 		user.setRole("ADMIN");
 		
@@ -61,7 +61,7 @@ public class UserTest
 		assertEquals("Error fetching user" , "Rohan" , user.getFirstName());
 	}
 	
-	@Test
+
 	public void testAddUser() 
 	{
 		

@@ -93,4 +93,18 @@ public class ProductDAOIMPL implements ProductDAO
 	}
 
 
+	@Override
+	public List<Product> topPurchasedProduct() 
+	{
+            String query = "FROM Product WHERE active = true ORDER BY purchases DESC";
+		
+		    return sessionFactory
+					.getCurrentSession()
+					.createQuery(query,Product.class)
+					.setFirstResult(0)
+					.setMaxResults(2)
+					.getResultList();
+	}
+
+
 }
