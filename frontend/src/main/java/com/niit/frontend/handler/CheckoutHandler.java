@@ -140,6 +140,7 @@ public class CheckoutHandler
 			
 			product = cartLine.getProduct();
 			product.setQuantity(product.getQuantity() - cartLine.getProductCount());
+			product.setPurchases(product.getPurchases() + cartLine.getProductCount());
 			productDAO.update(product);
 
 			// delete the cartLine
