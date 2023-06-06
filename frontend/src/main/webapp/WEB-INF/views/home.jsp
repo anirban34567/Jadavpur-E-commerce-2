@@ -1,7 +1,7 @@
 <script src="${js}/angular.js"></script>
 
 <!-- DataTable Bootstrap Script -->
-<script src="${js}/productsController.js"></script>
+<script src="${js}/ProductController.js"></script>
 <div class="container" ng-app="ShoppingApp"
 	ng-controller="ProductController as pCtrl">
 	<div class="row" ng-init="pCtrl.fetchProducts()">
